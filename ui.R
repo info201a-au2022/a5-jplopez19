@@ -2,22 +2,28 @@ library(plotly)
 library(bslib)
 
 # Load climate data
-climate_df <- read.csv("https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv", stringsAsFactors = FALSE)
+data <- read.csv("https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv", stringsAsFactors = FALSE)
 
 # Home page tab
 intro_tab <- tabPanel(
-  "Introduction",
+  "Introduction Page",
   sidebarLayout(
     sidebarPanel(
-      p("My project explores the trend of carbon dioxide production based emissions, which is measured in million tonnes from countries around the world from as early as 1750 to 2020.")
+      p("The following is an exploration of Carbon Dioxide emission trends throughout wolrd beginning in 1750 to 2020.")
     ),
     mainPanel(
-      h2("Information about the Dataset"),
-      p("Climate Change is one of the biggest issues facing the world today. The temperature of the world is increasing, but it is increasing rapidly because of man-made causes. As we have more greenhouse gas emissions, such as carbon dioxide, being produced, it traps the sun’s heat and leads to climate change. The dataset that we are using will help us identify which countries contribute and produce the most amount of CO2 gas and we can also compare different countries, and see if we can identify a pattern or trend. The dataset that we are using is from the Global Carbon Project and the Climate Data Explorer, which are one of the many main sources of data. The dataset that I am using was collected and aggregated by Hannah Ritchie, Max Roser, Edouard Mathieu, Bobbie Macdonald, and Pablo Rosado. Some of the possible limitations with this data is that there are some data values that are not included in the dataset, and as always, we should consider that it is not always perfect and that there may be human errors or biases in the dataset."),
+      h2("Climate Change"),
+      p("Climate change has become one of the most pressing issues of the 21st century. As the issue
+      continues creating implications on the world, we must persist in finding solutions. To do so, we must
+      understand how climate change works, what are the causes, and who are the main contributors."),
       h2("Summary Information"), 
-      p("I was able to use my DPLYR skills to be able to find a number of answers to questions I was curious about when I was looking at the dataset. I found that the country with that produced the highest co2 in 2020 was China, emitting 10667.887 million tonnes, while the country that emitted the lowest was Tuvalu. The country with the highest co2 production per capita was Qatar and the country that had the highest oil co2 produced per capita was the Democratic Republic of Congo."),
-      h2("Conclusions from my Data Viz"),
-      p("My chart displays the amount of CO2 that is produced for any country or countries that the user selects. Although every country as produces a different amount of CO2, I was able to see a clear trend with the production of CO2 is that it is trending upwards and we are producing more and more CO2 into the air every year. There is a little bit of decline in the recent years, probably because climate change is becoming more apparent in the world and we are trying to bring change.")
+      p("To better understand climate change, I used DPLYR to ask and answer questions pertaining to
+      what countries contribute the most and least to CO2 emissions. First, I found that China was the country
+      with the highest C02 emissions in 2020, estimating to 10667.887 million tonnes emitted. Secondly, I found
+      that the country with the lowest C02 emissions in 2020 was Tuvalu. For a more precise understanding of CO2
+      emissions, I sought out to find emissions per capita. In 2020, Quatar had the highest C02 production per
+      capita. Finally, the country with the highest oil CO2 production per capita was the Democratic Republic
+      of Congo."),
     )
   )
 )
@@ -49,8 +55,11 @@ main_panel_plot <- mainPanel(
   plotlyOutput(outputId = "climate_plot")
 )
 chart_description <- mainPanel(
-  h2("Purpose and Trends"),
-  p("The purpose of this chart is to see the trend of the production of CO2 over the years in different countries around the world. The biggest trend one can notice in the chart is that the production of CO2 is increasing throughout the years, which is pretty alarming.")
+  h2("Chart Description"),
+  p("The line graph above demonsrates CO2 emission trends by individual country 
+    from the years 1750 to 2020. One of the main trends observed shows an overall
+    increase in the  C02 production througout the world. Since the data was first
+    collected C02 emissions trends in nearly all countries has increased.")
 )
 
 # Plot Tab  — combine sidebar panel and main panel
@@ -65,8 +74,8 @@ climate_tab <- tabPanel(
 
 ui <- navbarPage(
   # Home page title
-  theme = bs_theme(version = 5, bootswatch = "minty"),
-  "Climate Change",
+  theme = bs_theme(version = 5, bootswatch = "superhero"),
+  "A5: Climate Change",
   intro_tab,
   climate_tab
 )
