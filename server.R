@@ -2,16 +2,17 @@ library(ggplot2)
 library(plotly)
 library(dplyr)
 
-climate_df <- read.csv("https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv", stringsAsFactors = FALSE)
+data <- read.csv("https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv", stringsAsFactors = FALSE)
+View(data)
 
 server <- function(input, output) {
   
   output$climate_plot <- renderPlotly({
-    co2_data <- climate_df %>% 
+    co2_data <- data %>% 
       filter(country %in% input$country_selection) %>% 
       group_by(country, year)
     
-    slider_df <- climate_df %>% 
+    slider_df <- data %>% 
       filter(country %in% input$country_selection) %>% 
       filter(year <= input$year_selection[2], year >= input$year_selection[1] )
     
@@ -19,9 +20,9 @@ server <- function(input, output) {
       geom_line(aes(x = year, 
                     y = co2, 
                     color = country)) +
-    labs(title = "CO2 produced per Year",
+    labs(title = "Total yearly CO2 production by Country",
          x = "Year",
-         y = "CO2 measured in million tonnes") 
+         y = "CO2 emissions measured in million tonnes") 
     
     
     
